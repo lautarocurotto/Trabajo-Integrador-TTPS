@@ -27,15 +27,16 @@
   </div>
 
   <div>
-    <%= form.label :location.name, style: "display: block" %>
-    <%= form.text_field :location.name %>
-  </div>
-
-  <div>
     <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
+    <%#= form_with model: @location do |form| %>
+    <%= form.collection_select :location_id , Location.all, :id ,:name %>
+    <%#= form_with model: @location  do |form| %>
+      <%#= form.text_field :name %>
+      <%#= form.text_field :province %>
+      <%#= form.submit %>
+    <%# end %> 
   </div>
-
+  <br> 
 
   <div>
     <%= form.submit %>

@@ -4,7 +4,7 @@ class CreateBranches < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :address
       t.integer :phone
-
+      t.belongs_to :location, index: true
       t.timestamps
     end
     add_index :branches, :name, unique: true
