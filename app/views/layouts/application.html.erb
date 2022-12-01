@@ -7,8 +7,19 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
-
+  <div>
+    <% if signed_in? %>
+      <div> Bienvenido! <%= current_user.email %></div>
+      <%= link_to "Sucursales", branches_path %>
+      <%= link_to "Localidades", locations_path %>
+      <%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } %>
+    <% else %>
+      <%= link_to "Registrarse", new_user_registration_path %>
+      <%= link_to "Ingresar", new_user_session_path %>
+    <% end %>
+  </div>
   <body>
     <%= yield %>
   </body>
