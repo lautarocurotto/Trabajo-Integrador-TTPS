@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :branches
   resources :locations
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get 'users/:id' => 'users#show'
+  get 'users/' => 'users#index'
 
   # Defines the root path route ("/")
    root "landscape#new"
