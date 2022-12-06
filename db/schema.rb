@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_235549) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_210531) do
   create_table "branches", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -18,13 +18,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_235549) do
     t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "schedule_id", null: false
     t.index ["location_id"], name: "index_branches_on_location_id"
     t.index ["name"], name: "index_branches_on_name", unique: true
+    t.index ["schedule_id"], name: "index_branches_on_schedule_id"
   end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "province"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.time "monday_start"
+    t.time "monday_end"
+    t.time "tuesday_start"
+    t.time "tuesday_end"
+    t.time "wednesday_start"
+    t.time "wednesday_end"
+    t.time "thursday_start"
+    t.time "thursday_end"
+    t.time "friday_start"
+    t.time "friday_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,4 +59,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_235549) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "branches", "schedules"
 end

@@ -9,6 +9,8 @@ class BranchesController < ApplicationController
 
   # GET /branches/1 or /branches/1.json
   def show
+    @schedule = Schedule.find(@branch.schedule_id)
+    @location = Location.find(@branch.location_id)
   end
 
   # GET /branches/new
@@ -22,7 +24,11 @@ class BranchesController < ApplicationController
 
   # POST /branches or /branches.json
   def create
+    schedule_params = {monday_start: '2000-01-01 08:00:00', monday_end:'2000-01-01 15:00:00', tuesday_start:'2000-01-01 08:00:00', tuesday_end:'2000-01-01 15:00:00', wednesday_start:'2000-01-01 08:00:00', wednesday_end:'2000-01-01 15:00:00', thursday_start:'2000-01-01 08:00:00', thursday_end:'2000-01-01 15:00:00',friday_start:'2000-01-01 08:00:00',friday_end:'2000-01-01 15:00:00'}
+    aux = Schedule.new(schedule_params)
+    aux.save
     @branch = Branch.new(branch_params)
+    @branch.schedule_id = aux.id
 
     respond_to do |format|
       if @branch.save
@@ -50,8 +56,9 @@ class BranchesController < ApplicationController
 
   # DELETE /branches/1 or /branches/1.json
   def destroy
+    key = @branch.schedule_id
     @branch.destroy
-
+    Schedule.find(key).destroy
     respond_to do |format|
       format.html { redirect_to branches_url, notice: "Branch was successfully destroyed." }
       format.json { head :no_content }
@@ -66,6 +73,6 @@ class BranchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def branch_params
-      params.require(:branch).permit(:name, :address, :phone, :location_id)
+      params.require(:branch).permit(:name, :address, :phone, :location_id, :schedule_id)
     end
 end
