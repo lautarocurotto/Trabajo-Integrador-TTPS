@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointments
   resources :schedules
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :branches
