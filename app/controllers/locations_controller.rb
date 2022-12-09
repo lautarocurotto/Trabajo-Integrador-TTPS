@@ -49,11 +49,16 @@ class LocationsController < ApplicationController
 
   # DELETE /locations/1 or /locations/1.json
   def destroy
-    @location.destroy
-
-    respond_to do |format|
-      format.html { redirect_to locations_url, notice: "Location was successfully destroyed." }
-      format.json { head :no_content }
+    if (Branch.find(@location.id))
+      respond_to do |format|
+        format.html{ redirect_to locations_url, notice: "No se puede destruir la localidad porque tiene una sucursal asignada." }
+      end
+    else
+      @location.destroy
+      respond_to do |format|
+        format.html { redirect_to locations_url, notice: "Location was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -4,10 +4,12 @@
 
 <div id="appointments">
   <% @appointments.each do |appointment| %>
-    <%= render appointment %>
+    <% if appointment.branch_id == current_user.assignedbranch %>
+      <%= render appointment %>
     <p>
       <%= link_to "Show this appointment", appointment %>
     </p>
+    <% end %>
   <% end %>
 </div>
 

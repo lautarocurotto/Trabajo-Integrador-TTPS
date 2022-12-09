@@ -1,1 +1,7 @@
-<%= @user.email %>
+<div>
+ Correo:    <%= @user.email %>
+</div>
+Rol: <%= @user.role%>
+<br>
+
+<%= link_to  'Editar Perfil' ,edit_user_registration_path%>

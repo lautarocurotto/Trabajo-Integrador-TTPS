@@ -4,7 +4,9 @@
 
 <div id="users">
     <% @users.each do |user| %>
-        <%= user.email %><br/>
+        <%= user.email %>
+        <%= link_to "Editar Usuario " ,  users_edit_path(user.id) %>
+        <br/>
     <% end %>
 </div>
 

@@ -8,6 +8,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1 or /appointments/1.json
   def show
+    @branch = Branch.find(@appointment.branch_id) 
   end
 
   # GET /appointments/new
