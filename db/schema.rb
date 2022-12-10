@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_031709) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_040242) do
   create_table "appointments", force: :cascade do |t|
     t.date "date", null: false
     t.time "hour", null: false
@@ -21,15 +21,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_031709) do
     t.integer "branch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "comment"
     t.index ["branch_id"], name: "index_appointments_on_branch_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "branches", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.integer "phone"
-    t.integer "location_id"
+    t.string "name", null: false
+    t.string "address", null: false
+    t.integer "phone", null: false
+    t.string "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "schedule_id", null: false
@@ -69,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_031709) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
+    t.string "role", null: false
     t.integer "assignedbranch"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

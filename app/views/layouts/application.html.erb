@@ -15,6 +15,7 @@
       <%= link_to "Sucursales", branches_path %>
       <%= link_to "Localidades", locations_path %>
       <%= link_to "Usuarios" , users_index_path %>
+      <%= link_to "Turnos", appointments_path %>
       <%= link_to "Mi Perfil" , profile_path(current_user.id) %>
       <%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } %>
     <% else %>

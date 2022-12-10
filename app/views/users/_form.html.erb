@@ -19,6 +19,9 @@
   <div>
     <%= f.collection_select(:role, User::ROLES, :to_s, lambda{|i| i.to_s.humanize}) %>
   </div>
+   <div>
+    <%= f.collection_select(:assignedbranch, Branch.all, :id , :name) %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Save user" %>

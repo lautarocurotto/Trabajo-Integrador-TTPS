@@ -1,12 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @appointment %>
+<b>Comment: </b><%= @appointment.comment%>
 <%= render @branch %>
 
 
 <div>
-  <%= link_to "Edit this appointment", edit_appointment_path(@appointment) %> |
+<% if current_user.role == 'client' %>
+  <% if @appointment.state != 'Atendido' %>
+    <%= link_to "Edit this appointment", edit_appointment_path(@appointment) %>
+    <%= button_to "Cancelar turno", @appointment, method: :delete %>
+  <% end %>
+<% else %>
+  <% if @appointment.state != 'Atendido' %>
+    <%= link_to "Atender turno", edit_appointment_path(@appointment) %>
+  <% end %>
+<% end %>
   <%= link_to "Back to appointments", appointments_path %>
-
-  <%= button_to "Destroy this appointment", @appointment, method: :delete %>
 </div>

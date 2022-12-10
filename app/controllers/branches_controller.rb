@@ -56,12 +56,19 @@ class BranchesController < ApplicationController
 
   # DELETE /branches/1 or /branches/1.json
   def destroy
-    key = @branch.schedule_id
-    @branch.destroy
-    Schedule.find(key).destroy
-    respond_to do |format|
-      format.html { redirect_to branches_url, notice: "Branch was successfully destroyed." }
-      format.json { head :no_content }
+    if (Appointment.find_by(branch_id: @branch.id , state: 'Pendiente'))
+      respond_to do |format|
+        format.html { redirect_to branches_url, notice: "No se puede destruir porque hay turnos asignados." }
+        format.json { head :no_content }
+      end
+    else
+      key = @branch.schedule_id
+      @branch.destroy
+      Schedule.find(key).destroy
+      respond_to do |format|
+        format.html { redirect_to branches_url, notice: "Branch was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 

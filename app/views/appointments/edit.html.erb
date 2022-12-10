@@ -1,7 +1,9 @@
 <h1>Editing appointment</h1>
-
-<%= render "form", appointment: @appointment %>
-
+<% if current_user.role == 'client' %>
+  <%= render "form", appointment: @appointment %>
+<% else %>
+  <%= render "attend", appointment: @appointment %>
+<% end %>
 <br>
 
 <div>

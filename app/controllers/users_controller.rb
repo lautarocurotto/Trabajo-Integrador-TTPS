@@ -31,6 +31,10 @@ class UsersController < ApplicationController
     end
     def create
         @user = User.new(user_params)
+        puts @user.role
+        if (@user.role != "staff")
+            @user.assignedbranch = nil
+        end
         respond_to do |format|
             if @user.save
               format.html { redirect_to users_index_url, notice: "User was successfully created." }
@@ -40,6 +44,15 @@ class UsersController < ApplicationController
                 format.json { render json: @user.errors, status: :unprocessable_entity }
             end
           end
+    end
+# DELETE /users/1 or /users/1.json
+    def destroy
+        @user = User.find(params[:id])
+        @user.destroy
+        respond_to do |format|
+            format.html { redirect_to users_index_url, notice: "User was successfully destroyed." }
+            format.json { head :no_content }
+        end
     end
 
     def user_params

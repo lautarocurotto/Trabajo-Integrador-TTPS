@@ -3,11 +3,25 @@
 <h1>Usuarios</h1>
 
 <div id="users">
-    <% @users.each do |user| %>
-        <%= user.email %>
-        <%= link_to "Editar Usuario " ,  users_edit_path(user.id) %>
-        <br/>
-    <% end %>
+    <% if current_user.role == 'admin' %>
+        <% @users.each do |user| %>
+            <%= user.email %>
+            <%= link_to "Mostrar Usuario " ,  profile_path(user.id) %>
+            <br/>
+        <% end %>   
+    <% else %>
+        <% @users.each do |user| %>
+            <% if user.role == 'client'%>
+                <%= user.email %>
+                <%= link_to "Mostrar Usuario " ,  profile_path(user.id) %>
+                <br/>
+            <% end %>  
+        <% end %>    
+    <% end %>  
+</div>
+
+<div>
+    <%= link_to "Crear Usuario", users_new_path%>
 </div>
 
 
