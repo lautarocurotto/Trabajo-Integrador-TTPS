@@ -4,20 +4,32 @@ class LocationsController < ApplicationController
 
   # GET /locations or /locations.json
   def index
+    if current_user.role != 'admin'
+      redirect_to :home
+    end
     @locations = Location.all
   end
 
   # GET /locations/1 or /locations/1.json
   def show
+    if current_user.role != 'admin'
+      redirect_to :home
+    end
   end
 
   # GET /locations/new
   def new
+    if current_user.role != 'admin'
+      redirect_to :home
+    end
     @location = Location.new
   end
 
   # GET /locations/1/edit
   def edit
+    if current_user.role != 'admin'
+      redirect_to :home
+    end
   end
 
   # POST /locations or /locations.json

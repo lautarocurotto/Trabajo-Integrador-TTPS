@@ -10,5 +10,6 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New branch", new_branch_path %>
+<% if current_user.role == 'admin'%>
+  <%= link_to "New branch", new_branch_path %>
+<% end %>

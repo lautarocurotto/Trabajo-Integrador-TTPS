@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   
   # Defines the root path route ("/")
-   root "landscape#new"
+   root "landscape#new", as: :home
 end

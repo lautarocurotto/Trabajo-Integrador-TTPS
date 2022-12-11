@@ -5,8 +5,10 @@
 <%= render @schedule %>
 
 <div>
-  <%= link_to "Edit this branch", edit_branch_path(@branch) %> |
-  <%= link_to "Back to branches", branches_path %>
-  <%= link_to "Editar horario" , edit_schedule_path(@branch.schedule_id) %>
-  <%= button_to "Destroy this branch", @branch, method: :delete %>
+<%= link_to "Back to branches", branches_path %>
+  <% if current_user.role == 'admin'%>
+    <%= link_to "Edit this branch", edit_branch_path(@branch) %>
+    <%= link_to "Editar horario" , edit_schedule_path(@branch.schedule_id) %>
+    <%= button_to "Destroy this branch", @branch, method: :delete %>
+  <% end %>
 </div>

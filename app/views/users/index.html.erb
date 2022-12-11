@@ -20,9 +20,10 @@
     <% end %>  
 </div>
 
-<div>
-    <%= link_to "Crear Usuario", users_new_path%>
-</div>
-
+<% if current_user.role == 'admin' %>
+    <div>
+        <%= link_to "Crear Usuario", users_new_path%>
+    </div>
+<% end %>
 
 

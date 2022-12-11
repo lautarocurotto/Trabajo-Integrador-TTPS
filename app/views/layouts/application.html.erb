@@ -12,9 +12,14 @@
   <div class="header">
     <% if signed_in? %>
       <span id="welcome"> Bienvenido! <%= current_user.email %> </span>
-      <%= link_to "Sucursales" , branches_path , class: "headerlink"%>
-      <%= link_to "Localidades", locations_path , class: "headerlink" %>
-      <%= link_to "Usuarios" , users_index_path , class: "headerlink"%>
+      <%= link_to "Home", home_path , class: "headerlink"%>
+      <% if current_user.role != 'client'%>
+        <%= link_to "Sucursales" , branches_path , class: "headerlink"%>
+        <%= link_to "Usuarios" , users_index_path , class: "headerlink"%>
+      <%end%>
+      <% if current_user.role == 'admin'%>
+        <%= link_to "Localidades", locations_path , class: "headerlink" %>
+      <% end %>
       <%= link_to "Turnos", appointments_path , class: "headerlink"%>
       <%= link_to "Mi Perfil" , profile_path(current_user.id) , class: "headerlink"%>
       <%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } , class: "headerlink"%>

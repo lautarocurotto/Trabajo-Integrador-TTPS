@@ -2,12 +2,23 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
     def show
         @user = User.find(params[:id])
+        if current_user.role == 'client'
+            if @user.id != current_user.id
+                redirect_to :home
+            end
+        end
     end
 
     def index
+        if current_user.role == 'client'
+            redirect_to :home
+          end
         @users = User.all
     end
     def edit
+        if current_user.role != 'admin'
+            redirect_to :home
+        end
         @user = User.find(params[:id])
     end
 
@@ -28,6 +39,9 @@ class UsersController < ApplicationController
         end
     end
     def new
+        if current_user.role != 'admin'
+            redirect_to :home
+        end
         @user = User.new
     end
     def create
