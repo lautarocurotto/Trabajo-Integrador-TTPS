@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+Los horarios los hice de esa forma porque si utilizo un array rompo 1FN y solo lo permite postgresql

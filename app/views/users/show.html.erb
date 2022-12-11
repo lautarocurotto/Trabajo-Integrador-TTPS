@@ -1,0 +1,15 @@
+<div>
+ Correo:    <%= @user.email %>
+</div>
+Rol: <%= @user.role%>
+<br>
+<% if @user.id == current_user.id %>
+    <%= link_to  'Editar Perfil' ,edit_user_registration_path%>
+<% else %>
+    <% if current_user.role == 'admin' %>
+        <div>
+            <%= link_to "Editar Usuario " ,  users_edit_path(@user.id) %>
+            <%= button_to "Destroy this user", :users_destroy, method: :delete %>
+        </div>
+    <% end %>
+<% end %>

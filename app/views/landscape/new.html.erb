@@ -1,0 +1,9 @@
+<div class="center">
+    <h1>Bienvenido a la página principal</h1>
+    <% if signed_in? %>
+        <%= current_user.email %>
+    <% end %>
+    <br>
+    <br>
+    <p>Podes navegar por el sitio utilizando la barra de tareas de arriba a la derecha!</p>
+</div>

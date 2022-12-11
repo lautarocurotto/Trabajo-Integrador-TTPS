@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  monday_start: 2022-12-04 23:34:45
+  monday_end: 2022-12-04 23:34:45
+  tuesday_start: 2022-12-04 23:34:45
+  tuesday_end: 2022-12-04 23:34:45
+  wednesday_start: 2022-12-04 23:34:45
+  wednesday_end: 2022-12-04 23:34:45
+  thursday_start: 2022-12-04 23:34:45
+  thursday_end: 2022-12-04 23:34:45
+  friday_start: 2022-12-04 23:34:45
+  friday_end: 2022-12-04 23:34:45
+
+two:
+  monday_start: 2022-12-04 23:34:45
+  monday_end: 2022-12-04 23:34:45
+  tuesday_start: 2022-12-04 23:34:45
+  tuesday_end: 2022-12-04 23:34:45
+  wednesday_start: 2022-12-04 23:34:45
+  wednesday_end: 2022-12-04 23:34:45
+  thursday_start: 2022-12-04 23:34:45
+  thursday_end: 2022-12-04 23:34:45
+  friday_start: 2022-12-04 23:34:45
+  friday_end: 2022-12-04 23:34:45

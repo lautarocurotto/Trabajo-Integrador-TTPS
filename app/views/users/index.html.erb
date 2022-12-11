@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Usuarios</h1>
+
+<div id="users">
+    <% if current_user.role == 'admin' %>
+        <% @users.each do |user| %>
+            <%= user.email %>
+            <%= link_to "Mostrar Usuario " ,  profile_path(user.id) %>
+            <br/>
+        <% end %>   
+    <% else %>
+        <% @users.each do |user| %>
+            <% if user.role == 'client'%>
+                <%= user.email %>
+                <%= link_to "Mostrar Usuario " ,  profile_path(user.id) %>
+                <br/>
+            <% end %>  
+        <% end %>    
+    <% end %>  
+</div>
+
+<% if current_user.role == 'admin' %>
+    <div>
+        <%= link_to "Crear Usuario", users_new_path%>
+    </div>
+<% end %>
+
+

@@ -1,0 +1,67 @@
+<%= form_with(model: schedule) do |form| %>
+  <% if schedule.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+        <% schedule.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :monday_start, style: "display: block" %>
+    <%= form.time_field :monday_start %>
+  </div>
+
+  <div>
+    <%= form.label :monday_end, style: "display: block" %>
+    <%= form.time_field :monday_end %>
+  </div>
+
+  <div>
+    <%= form.label :tuesday_start, style: "display: block" %>
+    <%= form.time_field :tuesday_start %>
+  </div>
+
+  <div>
+    <%= form.label :tuesday_end, style: "display: block" %>
+    <%= form.time_field :tuesday_end %>
+  </div>
+
+  <div>
+    <%= form.label :wednesday_start, style: "display: block" %>
+    <%= form.time_field :wednesday_start %>
+  </div>
+
+  <div>
+    <%= form.label :wednesday_end, style: "display: block" %>
+    <%= form.time_field :wednesday_end %>
+  </div>
+
+  <div>
+    <%= form.label :thursday_start, style: "display: block" %>
+    <%= form.time_field :thursday_start %>
+  </div>
+
+  <div>
+    <%= form.label :thursday_end, style: "display: block" %>
+    <%= form.time_field :thursday_end %>
+  </div>
+
+  <div>
+    <%= form.label :friday_start, style: "display: block" %>
+    <%= form.time_field :friday_start %>
+  </div>
+
+  <div>
+    <%= form.label :friday_end, style: "display: block" %>
+    <%= form.time_field :friday_end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
