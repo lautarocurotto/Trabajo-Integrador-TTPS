@@ -13,3 +13,59 @@
  *= require_tree .
  *= require_self
  */
+
+*{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #F9F9F9
+}
+ .headerlink{
+    /*color: grey;*/
+    background-color: #F2F2F2;
+    text-decoration: none;
+    color: black;
+    padding-left: 1rem;
+
+ }
+
+ .header{
+    background-color: #F2F2F2;
+    text-align: right;
+    padding-top: 1.5rem;
+    height: 3rem;
+    position: relative;
+    border-radius: 0.2cm;
+    padding-right: 2rem;
+    box-shadow: 0px 0px 10.2222px
+ }
+
+
+ #appointments{
+    position: center;
+    text-align: center;
+ }
+
+ #welcome{
+    padding-right: 55rem;
+    background-color: #F2F2F2;
+ }
+
+ .input.input-field{
+    border: 2px solid #9FA0A4;
+    border-radius: 6px;
+ }
+
+ .container{
+    text-align: center;
+    top: 50%;
+    position: fixed;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+ }
+ .center{
+    text-align: center;
+    margin-top: 5rem;
+ }

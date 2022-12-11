@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /schedules or /schedules.json
   def index

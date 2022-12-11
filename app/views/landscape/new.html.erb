@@ -1,5 +1,9 @@
-<h1>Landscape#new</h1>
-<p>Find me in app/views/landscape/new.html.erb</p>
-<% if signed_in? %>
-    <%= current_user.email %>
-<% end %>
+<div class="center">
+    <h1>Bienvenido a la página principal</h1>
+    <% if signed_in? %>
+        <%= current_user.email %>
+    <% end %>
+    <br>
+    <br>
+    <p>Podes navegar por el sitio utilizando la barra de tareas de arriba a la derecha!</p>
+</div>

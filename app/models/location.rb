@@ -6,4 +6,7 @@ class Location < ApplicationRecord
         self.name.upcase!
         self.province.upcase!
     end
+    def fullname
+        aux = self.name + ' ' + self.province
+    end
 end

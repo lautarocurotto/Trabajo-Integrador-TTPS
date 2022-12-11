@@ -9,18 +9,18 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <div>
+  <div class="header">
     <% if signed_in? %>
-      <div> Bienvenido! <%= current_user.email %></div>
-      <%= link_to "Sucursales", branches_path %>
-      <%= link_to "Localidades", locations_path %>
-      <%= link_to "Usuarios" , users_index_path %>
-      <%= link_to "Turnos", appointments_path %>
-      <%= link_to "Mi Perfil" , profile_path(current_user.id) %>
-      <%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } %>
+      <span id="welcome"> Bienvenido! <%= current_user.email %> </span>
+      <%= link_to "Sucursales" , branches_path , class: "headerlink"%>
+      <%= link_to "Localidades", locations_path , class: "headerlink" %>
+      <%= link_to "Usuarios" , users_index_path , class: "headerlink"%>
+      <%= link_to "Turnos", appointments_path , class: "headerlink"%>
+      <%= link_to "Mi Perfil" , profile_path(current_user.id) , class: "headerlink"%>
+      <%= link_to "Salir", destroy_user_session_path, data: { turbo_method: :delete } , class: "headerlink"%>
     <% else %>
-      <%= link_to "Registrarse", new_user_registration_path %>
-      <%= link_to "Ingresar", new_user_session_path %>
+      <%= link_to "Registrarse", new_user_registration_path , class: "headerlink"%>
+      <%= link_to "Ingresar", new_user_session_path , class: "headerlink"%>
     <% end %>
   </div>
   <body>

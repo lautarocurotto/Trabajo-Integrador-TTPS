@@ -13,28 +13,22 @@
 
   <div>
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name , class: "input-field" %>
   </div>
 
   <div>
     <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address , class: "input-field" %>
   </div>
 
   <div>
     <%= form.label :phone, style: "display: block" %>
-    <%= form.number_field :phone %>
+    <%= form.number_field :phone , class: "input-field"%>
   </div>
 
   <div>
     <%= form.label :location, style: "display: block" %>
-    <%#= form_with model: @location do |form| %>
-    <%= form.collection_select :location_id , Location.all, :id ,:name %>
-    <%#= form_with model: @location  do |form| %>
-      <%#= form.text_field :name %>
-      <%#= form.text_field :province %>
-      <%#= form.submit %>
-    <%# end %> 
+    <%= form.collection_select :location_id , Location.all, :id ,:fullname , class: "input-field"%>
   </div>
   <br> 
 
