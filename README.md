@@ -18,6 +18,13 @@ bundle install
 
 bundle exec rails server
 
+Usuarios default
+
+Usuario: admin@admin.com
+Contraseña: administrador
+
+Usuario: personal@personal.com
+Contraseña: personalbancario
 
 Decisiones de diseño
 
