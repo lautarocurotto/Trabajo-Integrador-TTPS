@@ -38,7 +38,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to location_url(@location), notice: "Location was successfully created." }
+        format.html { redirect_to location_url(@location), notice: "La localidad fue creada correctamente." }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to location_url(@location), notice: "Location was successfully updated." }
+        format.html { redirect_to location_url(@location), notice: "La localidad fue actualizada correctamente." }
         format.json { render :show, status: :ok, location: @location }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,14 +62,14 @@ class LocationsController < ApplicationController
 
   # DELETE /locations/1 or /locations/1.json
   def destroy
-    if (Branch.find(@location.id))
+    if (Branch.find_by(location_id: @location.id))
       respond_to do |format|
         format.html{ redirect_to locations_url, notice: "No se puede destruir la localidad porque tiene una sucursal asignada." }
       end
     else
       @location.destroy
       respond_to do |format|
-        format.html { redirect_to locations_url, notice: "Location was successfully destroyed." }
+        format.html { redirect_to locations_url, notice: "La localidad fue eliminada correctamente." }
         format.json { head :no_content }
       end
     end

@@ -1,4 +1,4 @@
-<h1>Editing appointment</h1>
+<h1>Editar turno</h1>
 <% if current_user.role == 'client' %>
   <%= render "form", appointment: @appointment %>
 <% else %>
@@ -7,6 +7,6 @@
 <br>
 
 <div>
-  <%= link_to "Show this appointment", @appointment %> |
-  <%= link_to "Back to appointments", appointments_path %>
+  <%= link_to "Mostrar este turno", @appointment %> |
+  <%= link_to "Volver a turnos", appointments_path %>
 </div>

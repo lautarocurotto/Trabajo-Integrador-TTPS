@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Appointments</h1>
+<h1>Turnos</h1>
 
 <div id="appointments">
   <% @appointments.each do |appointment| %>
@@ -8,14 +8,14 @@
       <% if appointment.branch_id == current_user.assignedbranch %>
         <%= render appointment %>
       <p>
-        <%= link_to "Show this appointment", appointment %>
+        <%= link_to "Mostrar turno", appointment %>
       </p>
       <% end %>
     <% else %>
       <% if current_user.id == appointment.user_id%>
         <%= render appointment %>
         <p>
-          <%= link_to "Show this appointment", appointment %>
+          <%= link_to "Mostrar turno", appointment %>
         </p>
       <% end %>
     <% end %>
