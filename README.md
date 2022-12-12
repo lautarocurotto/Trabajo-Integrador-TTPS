@@ -1,28 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Requisitos
 
-Things you may want to cover:
+Ruby (2.7 o superior)
+Ruby on Rails 7.0.4
+SQLite
 
-* Ruby version
+Instalación
 
-* System dependencies
+git clone https://github.com/lautarocurotto/Trabajo-Integrador-TTPS.git
 
-* Configuration
+rake db:migrate
 
-* Database creation
+rails db:seed
 
-* Database initialization
+bundle install
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+bundle exec rails server
 
 
+Decisiones de diseño
 
-Los horarios los hice de esa forma porque si utilizo un array rompo 1FN y solo lo permite postgresql
+Opté por modelar los roles del usuario agregando una columna a la tabla usuario porque es la manera recomendada cuando los usuarios tienen un solo rol asignado. El manejo de permisos lo hice manualmente ya que no me pareció necesario para la magnitud del proyecto usar la clase ability de cancancan. Los horarios los modelé con una tabla con campo día_inicio, día_fin porque si utilizo un array rompo 1FN y solo lo permite postgresql.
