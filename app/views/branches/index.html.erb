@@ -1,15 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Branches</h1>
+<h1>Sucursales</h1>
 
 <div id="branches">
   <% @branches.each do |branch| %>
     <%= render branch %>
     <p>
-      <%= link_to "Show this branch", branch %>
+      <%= link_to "Mostrar esta sucursal", branch %>
     </p>
   <% end %>
 </div>
 <% if current_user.role == 'admin'%>
-  <%= link_to "New branch", new_branch_path %>
+  <%= link_to "Nueva sucursal", new_branch_path %>
 <% end %>

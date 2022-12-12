@@ -9,7 +9,7 @@ Rol: <%= @user.role%>
     <% if current_user.role == 'admin' %>
         <div>
             <%= link_to "Editar Usuario " ,  users_edit_path(@user.id) %>
-            <%= button_to "Destroy this user", :users_destroy, method: :delete %>
+            <%= button_to "Eliminar Usuario", :users_destroy, method: :delete %>
         </div>
     <% end %>
 <% end %>
