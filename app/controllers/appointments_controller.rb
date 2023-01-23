@@ -70,6 +70,14 @@ class AppointmentsController < ApplicationController
       if (@appointment.hour.between? schedule.friday_start , schedule.friday_end )
         should_create = true
       end
+    when @appointment.date.saturday?
+      if (@appointment.hour.between? schedule.saturday_start , schedule.saturday_end )
+        should_create = true
+      end
+    when @appointment.date.sunday?
+      if (@appointment.hour.between? schedule.sunday_start , schedule.sunday_end )
+        should_create = true
+      end
     else
       should_create = false
     end
@@ -124,6 +132,14 @@ class AppointmentsController < ApplicationController
         end
       when appointment_date.friday?
         if (appointment_hour.between? schedule.friday_start , schedule.friday_end )
+          should_create = true
+        end
+      when @appointment.date.saturday?
+        if (@appointment.hour.between? schedule.saturday_start , schedule.saturday_end )
+          should_create = true
+        end
+      when @appointment.date.sunday?
+        if (@appointment.hour.between? schedule.sunday_start , schedule.sunday_end )
           should_create = true
         end
       else

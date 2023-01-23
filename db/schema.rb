@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_040242) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_214005) do
   create_table "appointments", force: :cascade do |t|
     t.date "date", null: false
     t.time "hour", null: false
@@ -60,6 +60,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_040242) do
     t.time "friday_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "saturday_start"
+    t.time "saturday_end"
+    t.time "sunday_start"
+    t.time "sunday_end"
   end
 
   create_table "users", force: :cascade do |t|
