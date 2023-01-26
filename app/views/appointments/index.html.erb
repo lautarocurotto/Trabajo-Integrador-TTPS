@@ -5,7 +5,7 @@
 <div id="appointments">
   <% @appointments.each do |appointment| %>
     <%if current_user.role == 'staff' %>
-      <% if appointment.branch_id == current_user.assignedbranch %>
+      <% if appointment.branch_id == current_user.branches_id %>
         <%= render appointment %>
       <p>
         <%= link_to "Mostrar turno", appointment %>

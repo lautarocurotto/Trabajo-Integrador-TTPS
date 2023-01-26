@@ -11,7 +11,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1 or /appointments/1.json
   def show
     if(current_user.role == 'staff')
-      if (current_user.assignedbranch != @appointment.branch_id)
+      if (current_user.branches_id != @appointment.branch_id)
         redirect_to appointments_url
       end
     else
@@ -30,7 +30,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
     if (current_user.role == 'staff')
-      if (current_user.assignedbranch != @appointment.branch_id)
+      if (current_user.branches_id != @appointment.branch_id)
         redirect_to appointments_url
       end
     end
@@ -46,6 +46,7 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments or /appointments.json
   def create
+    puts appointment_params
     @appointment = Appointment.new(appointment_params)
     branch = Branch.find(@appointment.branch_id)
     schedule = Schedule.find(branch.schedule_id)

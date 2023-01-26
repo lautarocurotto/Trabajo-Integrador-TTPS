@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_18_214005) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_26_211412) do
   create_table "appointments", force: :cascade do |t|
     t.date "date", null: false
     t.time "hour", null: false
@@ -75,7 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_214005) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role", null: false
-    t.integer "assignedbranch"
+    t.integer "branches_id"
+    t.index ["branches_id"], name: "index_users_on_branches_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

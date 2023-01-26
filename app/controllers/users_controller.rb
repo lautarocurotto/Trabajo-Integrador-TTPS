@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         puts @user
         puts params[:user]
         respond_to do |format|
-            if @user.update(params.require(:user).permit(:email, :password, :password_confirmation, :role , :assignedbranch)) 
+            if @user.update(params.require(:user).permit(:email, :password, :password_confirmation, :role , :branches_id)) 
                 format.html { redirect_to users_index_url, notice: "El usuario fue actualizado con éxito." }
                 format.json { render :show, status: :edited, location: @user }
             else
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         puts @user.role
         if (@user.role != "staff")
-            @user.assignedbranch = nil
+            @user.branches_id = nil
         end
         respond_to do |format|
             if @user.save
@@ -78,6 +78,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:email, :password, :password_confirmation, :role , :assignedbranch)
+        params.require(:user).permit(:email, :password, :password_confirmation, :role , :branches_id)
     end
 end
