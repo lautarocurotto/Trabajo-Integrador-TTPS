@@ -6,7 +6,7 @@
 
 <div>
 <%= link_to "Volver a sucursales", branches_path %>
-  <% if current_user.role == 'admin'%>
+  <% if can? :manage, Branch %>
     <%= link_to "Editar sucursal", edit_branch_path(@branch) %>
     <%= link_to "Editar horario" , edit_schedule_path(@branch.schedule_id) %>
     <%= button_to "Eliminar sucursal", @branch, method: :delete %>

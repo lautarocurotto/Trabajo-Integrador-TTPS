@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_26_211412) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_27_000838) do
   create_table "appointments", force: :cascade do |t|
     t.date "date", null: false
     t.time "hour", null: false
     t.string "reason", null: false
     t.string "state"
-    t.string "attended_by"
     t.integer "user_id", null: false
     t.integer "branch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "comment"
+    t.integer "attended_by_id"
+    t.index ["attended_by_id"], name: "index_appointments_on_attended_by_id"
     t.index ["branch_id"], name: "index_appointments_on_branch_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
@@ -83,5 +84,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_211412) do
 
   add_foreign_key "appointments", "branches"
   add_foreign_key "appointments", "users"
+  add_foreign_key "appointments", "users", column: "attended_by_id"
   add_foreign_key "branches", "schedules"
 end

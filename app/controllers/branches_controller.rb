@@ -1,37 +1,26 @@
 class BranchesController < ApplicationController
   before_action :set_branch, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /branches or /branches.json
   def index
-    if current_user.role == 'client'
-      redirect_to :home
-    end
     @branches = Branch.all
   end
 
   # GET /branches/1 or /branches/1.json
   def show
-    if current_user.role == 'client'
-      redirect_to :home
-    end
     @schedule = Schedule.find(@branch.schedule_id)
     @location = Location.find(@branch.location_id)
   end
 
   # GET /branches/new
   def new
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
     @branch = Branch.new
   end
 
   # GET /branches/1/edit
   def edit
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
   end
 
   # POST /branches or /branches.json

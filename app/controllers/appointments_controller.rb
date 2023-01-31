@@ -1,15 +1,18 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /appointments or /appointments.json
   def index
     @appointments = Appointment.all
     @user = current_user
+    @users = User.all
   end
 
   # GET /appointments/1 or /appointments/1.json
   def show
+    @users = User.all
     if(current_user.role == 'staff')
       if (current_user.branches_id != @appointment.branch_id)
         redirect_to appointments_url
@@ -196,6 +199,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:date, :hour, :reason, :branch_id, :state, :attended_by, :comment)
+      params.require(:appointment).permit(:date, :hour, :reason, :branch_id, :state, :attended_by_id, :comment)
     end
 end

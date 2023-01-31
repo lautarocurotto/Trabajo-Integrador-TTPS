@@ -14,7 +14,7 @@ class AppointmentsTest < ApplicationSystemTestCase
     visit appointments_url
     click_on "New appointment"
 
-    fill_in "Attended by", with: @appointment.attended_by
+    fill_in "Attended by", with: @appointment.attended_by_id
     fill_in "Date", with: @appointment.date
     fill_in "Hour", with: @appointment.hour
     fill_in "Reason", with: @appointment.reason
@@ -29,7 +29,7 @@ class AppointmentsTest < ApplicationSystemTestCase
     visit appointment_url(@appointment)
     click_on "Edit this appointment", match: :first
 
-    fill_in "Attended by", with: @appointment.attended_by
+    fill_in "Attended by", with: @appointment.attended_by_id
     fill_in "Date", with: @appointment.date
     fill_in "Hour", with: @appointment.hour
     fill_in "Reason", with: @appointment.reason

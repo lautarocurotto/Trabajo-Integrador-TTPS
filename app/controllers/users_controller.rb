@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
+    load_and_authorize_resource
+
     def show
         @user = User.find(params[:id])
         if current_user.role == 'client'
@@ -10,15 +12,10 @@ class UsersController < ApplicationController
     end
 
     def index
-        if current_user.role == 'client'
-            redirect_to :home
-          end
         @users = User.all
     end
+
     def edit
-        if current_user.role != 'admin'
-            redirect_to :home
-        end
         @user = User.find(params[:id])
     end
 
@@ -39,9 +36,6 @@ class UsersController < ApplicationController
         end
     end
     def new
-        if current_user.role != 'admin'
-            redirect_to :home
-        end
         @user = User.new
     end
     def create

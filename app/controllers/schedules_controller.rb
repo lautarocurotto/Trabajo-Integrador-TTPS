@@ -1,35 +1,24 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /schedules or /schedules.json
   def index
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
     @schedules = Schedule.all
   end
 
   # GET /schedules/1 or /schedules/1.json
   def show
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
   end
 
   # GET /schedules/new
   def new
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
     @schedule = Schedule.new
   end
 
   # GET /schedules/1/edit
   def edit
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
   end
 
   # POST /schedules or /schedules.json

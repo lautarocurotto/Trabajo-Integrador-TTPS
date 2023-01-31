@@ -10,6 +10,6 @@
     </p>
   <% end %>
 </div>
-<% if current_user.role == 'admin'%>
+<% if can? :create, Branch  %>
   <%= link_to "Nueva sucursal", new_branch_path %>
 <% end %>
