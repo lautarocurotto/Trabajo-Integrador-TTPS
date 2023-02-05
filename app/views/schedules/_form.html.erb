@@ -62,6 +62,26 @@
   </div>
 
   <div>
+    <%= form.label :saturday_start, style: "display: block" %>
+    <%= form.time_field :saturday_start %>
+  </div>
+
+  <div>
+    <%= form.label :saturday_end, style: "display: block" %>
+    <%= form.time_field :saturday_end %>
+  </div>
+
+  <div>
+    <%= form.label :sunday_start, style: "display: block" %>
+    <%= form.time_field :sunday_start %>
+  </div>
+
+  <div>
+    <%= form.label :sunday_end, style: "display: block" %>
+    <%= form.time_field :sunday_end %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

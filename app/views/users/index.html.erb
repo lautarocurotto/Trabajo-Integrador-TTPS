@@ -20,7 +20,7 @@
     <% end %>  
 </div>
 
-<% if current_user.role == 'admin' %>
+<% if can? :create, User %>
     <div>
         <%= link_to "Crear Usuario", users_new_path%>
     </div>

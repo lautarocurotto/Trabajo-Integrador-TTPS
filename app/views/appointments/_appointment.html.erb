@@ -6,7 +6,7 @@
 
   <p>
     <strong>Horario:</strong>
-    <%= appointment.hour %>
+    <%= appointment.hour.strftime('%H:%M') %>
   </p>
 
   <p>
@@ -21,7 +21,9 @@
 
   <p>
     <strong>Atendido por:</strong>
-    <%= appointment.attended_by %>
+    <% if  @users.find_by_id(appointment.attended_by_id).present?%>
+      <%= @users.find_by_id(appointment.attended_by_id).email %>
+    <% end %>
   </p>
 
 </div>

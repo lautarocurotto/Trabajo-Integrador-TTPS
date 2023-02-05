@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :Dirección, style: "display: block" %>
-    <%= form.text_field :Dirección , class: "input-field" %>
+    <%= form.text_field :address , class: "input-field" %>
   </div>
 
   <div>
@@ -31,6 +31,76 @@
     <%= form.collection_select :location_id , Location.all, :id ,:fullname , class: "input-field"%>
   </div>
   <br> 
+
+  <div>
+    <%= form.label :monday_start, style: "display: block" %>
+    <%= form.time_field :monday_start, value: '08:00' %>
+  </div>
+
+  <div>
+    <%= form.label :monday_end, style: "display: block" %>
+    <%= form.time_field :monday_end , value: '15:00' %>
+  </div>
+
+  <div>
+    <%= form.label :tuesday_start, style: "display: block" %>
+    <%= form.time_field :tuesday_start , value: '08:00'%>
+  </div>
+
+  <div>
+    <%= form.label :tuesday_end, style: "display: block" %>
+    <%= form.time_field :tuesday_end , value: '15:00'%>
+  </div>
+
+  <div>
+    <%= form.label :wednesday_start, style: "display: block" %>
+    <%= form.time_field :wednesday_start , value: '08:00'%>
+  </div>
+
+  <div>
+    <%= form.label :wednesday_end, style: "display: block" %>
+    <%= form.time_field :wednesday_end , value: '15:00' %>
+  </div>
+
+  <div>
+    <%= form.label :thursday_start, style: "display: block" %>
+    <%= form.time_field :thursday_start , value: '08:00'%>
+  </div>
+
+  <div>
+    <%= form.label :thursday_end, style: "display: block" %>
+    <%= form.time_field :thursday_end , value: '15:00' %>
+  </div>
+
+  <div>
+    <%= form.label :friday_start, style: "display: block" %>
+    <%= form.time_field :friday_start, value: '08:00' %>
+  </div>
+
+  <div>
+    <%= form.label :friday_end, style: "display: block" %>
+    <%= form.time_field :friday_end, value: '15:00' %>
+  </div>
+
+  <div>
+    <%= form.label :saturday_start, style: "display: block" %>
+    <%= form.time_field :saturday_start, value: '08:00' %>
+  </div>
+
+  <div>
+    <%= form.label :saturday_end, style: "display: block" %>
+    <%= form.time_field :saturday_end  , value: '15:00' %>
+  </div>
+
+  <div>
+    <%= form.label :sunday_start, style: "display: block" %>
+    <%= form.time_field :sunday_start , value: '00:00'%>
+  </div>
+
+  <div>
+    <%= form.label :sunday_end, style: "display: block" %>
+    <%= form.time_field :sunday_end , value: '00:00'%>
+  </div>
 
   <div>
     <%= form.submit %>

@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_040242) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_05_000611) do
   create_table "appointments", force: :cascade do |t|
     t.date "date", null: false
     t.time "hour", null: false
     t.string "reason", null: false
     t.string "state"
-    t.string "attended_by"
     t.integer "user_id", null: false
     t.integer "branch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "comment"
+    t.integer "attended_by_id"
+    t.index ["attended_by_id"], name: "index_appointments_on_attended_by_id"
     t.index ["branch_id"], name: "index_appointments_on_branch_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
@@ -60,6 +61,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_040242) do
     t.time "friday_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "saturday_start"
+    t.time "saturday_end"
+    t.time "sunday_start"
+    t.time "sunday_end"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,12 +76,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_040242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role", null: false
-    t.integer "assignedbranch"
+    t.integer "branches_id"
+    t.index ["branches_id"], name: "index_users_on_branches_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "appointments", "branches"
   add_foreign_key "appointments", "users"
+  add_foreign_key "appointments", "users", column: "attended_by_id"
+  add_foreign_key "branches", "locations"
   add_foreign_key "branches", "schedules"
+  add_foreign_key "users", "branches", column: "branches_id"
 end

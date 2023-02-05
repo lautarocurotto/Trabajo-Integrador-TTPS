@@ -1,35 +1,24 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /schedules or /schedules.json
   def index
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
     @schedules = Schedule.all
   end
 
   # GET /schedules/1 or /schedules/1.json
   def show
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
   end
 
   # GET /schedules/new
   def new
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
     @schedule = Schedule.new
   end
 
   # GET /schedules/1/edit
   def edit
-    if current_user.role != 'admin'
-      redirect_to :home
-    end
   end
 
   # POST /schedules or /schedules.json
@@ -78,6 +67,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.require(:schedule).permit(:monday_start, :monday_end, :tuesday_start, :tuesday_end, :wednesday_start, :wednesday_end, :thursday_start, :thursday_end, :friday_start, :friday_end)
+      params.require(:schedule).permit(:monday_start, :monday_end, :tuesday_start, :tuesday_end, :wednesday_start, :wednesday_end, :thursday_start, :thursday_end, :friday_start, :friday_end, :saturday_start, :saturday_end, :sunday_start ,:sunday_end)
     end
 end

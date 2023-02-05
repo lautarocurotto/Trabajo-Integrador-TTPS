@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :attended_by, value: current_user.email %>
+  <%= form.hidden_field :attended_by_id, value: current_user.id %>
   <div>
     <%= form.label :Comentario, style: "display: block" %>
     <%= form.text_field :comment %>

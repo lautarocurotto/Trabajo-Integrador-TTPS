@@ -13,14 +13,18 @@
     <% if signed_in? %>
       <span id="welcome"> Bienvenido! <%= current_user.email %> </span>
       <%= link_to "Home", home_path , class: "headerlink"%>
-      <% if current_user.role != 'client'%>
+      <% if can? :read, Branch %>
         <%= link_to "Sucursales" , branches_path , class: "headerlink"%>
-        <%= link_to "Usuarios" , users_index_path , class: "headerlink"%>
+      <% end %>
+      <% if can? :read, User %>
+        <% if current_user.role != 'client'%>
+          <%= link_to "Usuarios" , users_index_path , class: "headerlink"%>
+        <% end %>
       <%end%>
-      <% if current_user.role == 'admin'%>
+      <% if can? :read, Location %>
         <%= link_to "Localidades", locations_path , class: "headerlink" %>
       <% end %>
-      <% if current_user.role != 'admin'%>
+      <% if can? :read, Appointment %>
         <%= link_to "Turnos", appointments_path , class: "headerlink"%>
       <% end %>
       <%= link_to "Mi Perfil" , profile_path(current_user.id) , class: "headerlink"%>

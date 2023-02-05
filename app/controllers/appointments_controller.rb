@@ -1,17 +1,20 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /appointments or /appointments.json
   def index
     @appointments = Appointment.all
     @user = current_user
+    @users = User.all
   end
 
   # GET /appointments/1 or /appointments/1.json
   def show
+    @users = User.all
     if(current_user.role == 'staff')
-      if (current_user.assignedbranch != @appointment.branch_id)
+      if (current_user.branches_id != @appointment.branch_id)
         redirect_to appointments_url
       end
     else
@@ -25,12 +28,16 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    @branches = Branch.all
+    @schedules = Schedule.all
   end
 
   # GET /appointments/1/edit
   def edit
+    @branches = Branch.all
+    @schedules = Schedule.all
     if (current_user.role == 'staff')
-      if (current_user.assignedbranch != @appointment.branch_id)
+      if (current_user.branches_id != @appointment.branch_id)
         redirect_to appointments_url
       end
     end
@@ -46,6 +53,7 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments or /appointments.json
   def create
+    puts appointment_params
     @appointment = Appointment.new(appointment_params)
     branch = Branch.find(@appointment.branch_id)
     schedule = Schedule.find(branch.schedule_id)
@@ -70,13 +78,22 @@ class AppointmentsController < ApplicationController
       if (@appointment.hour.between? schedule.friday_start , schedule.friday_end )
         should_create = true
       end
+    when @appointment.date.saturday?
+      if (@appointment.hour.between? schedule.saturday_start , schedule.saturday_end )
+        should_create = true
+      end
+    when @appointment.date.sunday?
+      if (@appointment.hour.between? schedule.sunday_start , schedule.sunday_end )
+        should_create = true
+      end
     else
       should_create = false
     end
 
     if (!should_create)
       respond_to do |format|
-        format.html { redirect_to appointments_url, notice: "El día y horario seleccionados no está dentro de los de la sucursal seleccionada." }
+        format.html { #redirect_to appointments_url, notice: "El día y horario seleccionados no está dentro de los de la sucursal seleccionada." }
+      render :new, status: :unprocessable_entity , notice: "El día y horario seleccionados no está dentro de los de la sucursal seleccionada."}
       end
     else
       @appointment.user_id = current_user.id
@@ -124,6 +141,14 @@ class AppointmentsController < ApplicationController
         end
       when appointment_date.friday?
         if (appointment_hour.between? schedule.friday_start , schedule.friday_end )
+          should_create = true
+        end
+      when @appointment.date.saturday?
+        if (@appointment.hour.between? schedule.saturday_start , schedule.saturday_end )
+          should_create = true
+        end
+      when @appointment.date.sunday?
+        if (@appointment.hour.between? schedule.sunday_start , schedule.sunday_end )
           should_create = true
         end
       else
@@ -179,6 +204,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:date, :hour, :reason, :branch_id, :state, :attended_by, :comment)
+      params.require(:appointment).permit(:date, :hour, :reason, :branch_id, :state, :attended_by_id, :comment)
     end
 end

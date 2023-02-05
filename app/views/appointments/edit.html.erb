@@ -10,3 +10,28 @@
   <%= link_to "Mostrar este turno", @appointment %> |
   <%= link_to "Volver a turnos", appointments_path %>
 </div>
+
+<br><br>
+
+<% if current_user.role == 'client'%>
+<div>Horarios sucursales </div>
+  <% @branches.each do |branch| %>
+    <div class= "info-sucursales">
+      <%= branch.name %>
+      Apertura Lunes: <%= @schedules.find_by_id(branch.schedule_id).monday_start%>
+      Cierre Lunes: <%= @schedules.find_by_id(branch.schedule_id).monday_end%>
+      Apertura Martes: <%= @schedules.find_by_id(branch.schedule_id).tuesday_start%>
+      Cierre Martes: <%= @schedules.find_by_id(branch.schedule_id).tuesday_end%>
+      Apertura Miercoles: <%= @schedules.find_by_id(branch.schedule_id).wednesday_start%>
+      Cierre Miercoles: <%= @schedules.find_by_id(branch.schedule_id).wednesday_end%>    
+      Apertura Jueves: <%= @schedules.find_by_id(branch.schedule_id).thursday_start%>
+      Cierre Jueves: <%= @schedules.find_by_id(branch.schedule_id).thursday_end%>
+      Apertura Viernes: <%= @schedules.find_by_id(branch.schedule_id).friday_start%>
+      Cierre Viernes: <%= @schedules.find_by_id(branch.schedule_id).friday_end%>
+      Apertura Sábado: <%= @schedules.find_by_id(branch.schedule_id).saturday_start%>
+      Cierre Sábado: <%= @schedules.find_by_id(branch.schedule_id).saturday_end%>
+      Apertura Domingo: <%= @schedules.find_by_id(branch.schedule_id).sunday_start%>
+      Cierre Domingo: <%= @schedules.find_by_id(branch.schedule_id).sunday_end%>
+    </div>
+  <%end %>
+<% end %>
