@@ -17,7 +17,9 @@
         <%= link_to "Sucursales" , branches_path , class: "headerlink"%>
       <% end %>
       <% if can? :read, User %>
-        <%= link_to "Usuarios" , users_index_path , class: "headerlink"%>
+        <% if current_user.role != 'client'%>
+          <%= link_to "Usuarios" , users_index_path , class: "headerlink"%>
+        <% end %>
       <%end%>
       <% if can? :read, Location %>
         <%= link_to "Localidades", locations_path , class: "headerlink" %>

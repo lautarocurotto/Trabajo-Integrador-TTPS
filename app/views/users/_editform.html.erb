@@ -20,7 +20,7 @@
     <%= f.collection_select(:role, User::ROLES, :to_s, lambda{|i| i.to_s.humanize})%>
   </div>
   <div>
-    <%= f.collection_select(:branch_id, Branch.all, :id , :name) %>
+    <%= f.collection_select(:branches_id, Branch.all, :id , :name) %>
   </div>
 
   <div class="actions">

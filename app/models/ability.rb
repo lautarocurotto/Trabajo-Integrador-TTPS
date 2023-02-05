@@ -19,6 +19,7 @@ class Ability
       can :read, User
     when user.role == 'client'
       can :manage, Appointment
+      can :read, User
     end
 
 

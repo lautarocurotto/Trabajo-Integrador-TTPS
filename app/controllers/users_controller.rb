@@ -12,6 +12,9 @@ class UsersController < ApplicationController
     end
 
     def index
+        if current_user.role == 'client'
+            redirect_to :home
+        end
         @users = User.all
     end
 

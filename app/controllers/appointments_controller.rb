@@ -28,10 +28,14 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    @branches = Branch.all
+    @schedules = Schedule.all
   end
 
   # GET /appointments/1/edit
   def edit
+    @branches = Branch.all
+    @schedules = Schedule.all
     if (current_user.role == 'staff')
       if (current_user.branches_id != @appointment.branch_id)
         redirect_to appointments_url
@@ -88,7 +92,8 @@ class AppointmentsController < ApplicationController
 
     if (!should_create)
       respond_to do |format|
-        format.html { redirect_to appointments_url, notice: "El día y horario seleccionados no está dentro de los de la sucursal seleccionada." }
+        format.html { #redirect_to appointments_url, notice: "El día y horario seleccionados no está dentro de los de la sucursal seleccionada." }
+      render :new, status: :unprocessable_entity , notice: "El día y horario seleccionados no está dentro de los de la sucursal seleccionada."}
       end
     else
       @appointment.user_id = current_user.id
